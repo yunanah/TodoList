@@ -1,5 +1,5 @@
 import React, { useReducer, createContext, useContext, useRef } from 'react';
-
+//초기상태 배열을 정의한다
 const initialTodos = [
     // todo 객체를 4개 만든다
     {
@@ -23,7 +23,7 @@ const initialTodos = [
         done: false,
     },
 ];
-
+// state와 action을 가져와서 다음상태를 업데이트해줌
 function todoReducer(state, action) {
     switch(action.type) {
         case 'CREATE' :
@@ -44,13 +44,15 @@ function todoReducer(state, action) {
             throw new Error(`Unhandled Action Type: ${action.type}`);
     }
 } 
-
+// Context 안에는 Provider라는 컴포넌트가 있다
 const TodoStateContext = createContext();
 const TodoDispatchContext = createContext();
 const TodoNextIdContext = createContext();
 
+// 하나의 컴포넌트 export 
 export function TodoProvider({ children }) {
     const nextId = useRef(5);
+    // state를 위한 Context와 dispatch를 위한 Context를 만들어야함
     const [state, dispatch] = useReducer(todoReducer, initialTodos);
     return (
         <TodoStateContext.Provider value={state}>
@@ -63,6 +65,9 @@ export function TodoProvider({ children }) {
     );
 }
 
+
+//custom Hook 만들어준다
+//에러는 컨텍스트가 없을 때 발생 - Provider로 감싸주지 않은 실수처리에 좋다 
 export function useTodoState() {
     const context = useContext(TodoStateContext);
     if (!context) {
@@ -78,7 +83,8 @@ export function useTodoDispatch() {
     }
     return context;
 }
-
+// 새로운 항목을 만들때마다 관리해야하므로 필요하다
+// TodoCreate에서 사용 
 export function useTodoNextId() {
     const context = useContext(TodoNextIdContext);
     if (!context) {

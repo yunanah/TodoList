@@ -32,7 +32,9 @@ const TodoHeadBlock = styled.div`
 `;
 
 function TodoHead() {
+    // 만든 custom Hook을 통해 현재 todos 배열상태를 불러온다
     const todos = useTodoState();
+    //todos의 항목들 중에서 done값이 false인 것들을 undoneTasks에 넣는다 - 할일 개수에 출력할때 사용
     const undoneTasks = todos.filter(todo => !todo.done);
 
     // 오늘 날짜 불러오기 년월일

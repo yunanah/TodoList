@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+// TodoProvider로 감싼다 - context API
 function App() {
   return (
     <TodoProvider>
