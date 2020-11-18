@@ -1,13 +1,18 @@
+/*
+This is TodoHead Component file.
+It shows Date, Day, number of unfinished Items.
+*/
 import React from 'react';
 import styled from 'styled-components';
 import { useTodoState } from '../TodoContext';
-
+// TodoHead의 css - nested css 문법 사용해서 적어줌
 const TodoHeadBlock = styled.div`
+    //내부 padding 값
     padding-top: 48px;
     padding-left: 32px;
     padding-right: 32px;
     padding-bottom: 24px;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid #e9ecef; //구분선 style
     h1 {
         margin: 0;
         font-size: 36px;
