@@ -30,13 +30,14 @@ function TodoHead() {
     const todos = useTodoState();
     const undoneTasks = todos.filter(todo => !todo.done);
 
+    // 오늘 날짜 불러오기 년월일
     const today = new Date();
     const dateString = today.toLocaleDateString('ko-KR', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     });
-
+    //요일
     const dayName = today.toLocaleDateString('ko-KR', {
         weekday: 'long',
     });

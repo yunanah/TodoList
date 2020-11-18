@@ -13,6 +13,7 @@ const TodoListBlock = styled.div`
 function TodoList() {
     const todos = useTodoState();
     return(
+        //각 투두 아이템에 대하여 <TodoItem />으로 매핑하는데 속성값을 넣어준다.
         <TodoListBlock>
             {todos.map(
                 todo => 
