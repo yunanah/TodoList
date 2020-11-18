@@ -69,6 +69,8 @@ const TodoItemBlock = styled.div`
 `;
 
 function TodoItem({ id, done, text }) {
+    // Item TOGGLE, REMOVE dispatch로 처리
+    // state는 리렌더링 안한다. only dispatching
     const dispatch = useTodoDispatch();
     const onToggle = () => dispatch({
         type: 'TOGGLE',

@@ -54,7 +54,7 @@ const InsertFormPositioner = styled.div`
     left: 0;
     position: absolute;
 `;
-// form으로 해주면 엔터칠때마다 새로고침되서 상태가 날라가버림 -> onSubmit으로 제어
+// form으로 해주면 -> onSubmit 사용할 수 있음
 const InsertForm = styled.form`
     background: #f8f9fa;
     padding: 32px;
@@ -88,6 +88,7 @@ function TodoCreate() {
 
     //엔터쳐도 새로고침 발생 안함!
     const onSubmit = e => {
+        // 브라우저에서 하는 새로고침을 방지한다
         e.preventDefault();
         dispatch({
             type: 'CREATE',
@@ -97,12 +98,14 @@ function TodoCreate() {
                 done: false,
             }
         });
+        // CREATE하고 나서 다시 공백/닫힌상태/nextId+1 로 만든다
         setValue('');
         setOpen(false);
         nextId.current += 1;
     };
     return (
         /* open값이 true이면 렌더링*/
+        // onSubmit이 일어날 때 dispatch 하면 됨
         <>
         {open && <InsertFormPositioner>
             <InsertForm onSubmit={onSubmit}>
@@ -114,5 +117,5 @@ function TodoCreate() {
         </CircleButton></>
     );
 }
-
+// 성능 최적화 - 불필요한 렌더링 막음
 export default React.memo(TodoCreate);
